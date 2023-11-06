@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axiosInstance from '../../api/axios'
+import NavBar from './navBar'
 
 function AddQuestions() {
 
@@ -23,7 +24,7 @@ function AddQuestions() {
   }
   return (
     <div className="">
-      <h1>Add Questions</h1>
+      <NavBar/>
     <div>
       <div className="">
         <label>Question </label>

@@ -11,12 +11,12 @@ export const admin = createSlice({
     name:'adminAuth',
     initialState,
     reducers:{
-        superAdminLogin:(state,action)=>{
+        adminLogin:(state,action)=>{
             state.name= action.payload.name,
             state.token = action.payload.token,
             state.role = action.payload.role
         },
-        superAdminLogout:(state,action)=>{
+        adminLogout:(state,action)=>{
             state.name = null,
             state.token = null,
             state.role = null

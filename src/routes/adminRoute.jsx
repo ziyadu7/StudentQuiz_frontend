@@ -10,7 +10,7 @@ function AdminRoute() {
   const {token} = useSelector((state)=>state?.Admin)
   return (
     <Routes>
-    <Route path='/login' element = {<Login/>}/>
+    <Route path='/login' element = {token?<AddQuestions/>:<Login/>}/>
     <Route path='/addQuestions' element = {token?<AddQuestions/>:<Login/>}/>
     <Route path='/userData' element = {token?<UserData/>:<Login/>}/>
     </Routes>
