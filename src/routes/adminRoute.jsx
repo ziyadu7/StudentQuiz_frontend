@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 function AdminRoute() {
 
   const {token} = useSelector((state)=>state?.Admin)
-  console.log(token);
   return (
     <Routes>
     <Route path='/login' element = {<Login/>}/>

@@ -6,12 +6,14 @@ import { Provider } from 'react-redux'
 import {Store,persistor} from './store/store.js'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ThemeProvider } from "@material-tailwind/react";
+import { Toaster } from 'react-hot-toast'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <Provider store={Store}>
     <PersistGate loading={null} persistor={persistor}>
       <ThemeProvider>
+        <Toaster toastOptions={{duration:4000}}/>
        <App/>
        </ThemeProvider>
     </PersistGate>
