@@ -4,6 +4,7 @@ import Login from '../pages/admin/login'
 import AddQuestions from '../pages/admin/addQuestions'
 import UserData from '../pages/admin/userData'
 import { useSelector } from 'react-redux'
+import NotFound from '../pages/notFound'
 
 function AdminRoute() {
 

@@ -53,8 +53,9 @@ function Login() {
               name="password"
               placeholder="Password" />
             <div className='felx justify-center'>
-              <small className='text-red-600'>{err}</small>
+              <p className='text-red-600 text-center'>{err}</p>
             </div>
+            <p className='text-center text-blue-600 cursor-pointer' onClick={()=>navigate('/student/register')}>Don't have an account ?</p>
             <button
               type="button"
               onClick={() => confirmLogin()}

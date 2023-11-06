@@ -46,11 +46,12 @@ function Register() {
           <div className='felx justify-center'>
             <small className='text-red-600'>{err}</small>
           </div>
+          <p className='text-center text-blue-600 cursor-pointer' onClick={()=>navigate('/student/login')}>Alerady have account ?</p>
           <button
             type="button"
-            onClick={() => confirmLogin()}
+            onClick={() => confirmRegister()}
             className="w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-green-dark focus:outline-none my-1"
-          >Login Account</button>
+          >Register</button>
 
         </div>
       </div>
