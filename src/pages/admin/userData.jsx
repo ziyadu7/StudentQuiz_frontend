@@ -2,23 +2,32 @@ import React, { useEffect, useState } from 'react'
 import axiosInstance from '../../api/axios'
 import NavBar from './navBar'
 import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 function UserData() {
   const [userData, setUserData] = useState([])
   const [refresh, setRefresh] = useState(false)
+  const {token} = useSelector((state)=>state?.Admin)
+
   useEffect(() => {
-    axiosInstance.get('/admin/getUserData').then((res => {
+    axiosInstance.get('/admin/getUserData',{ headers: { authorization: `Bearer ${token}` } }).then((res => {
       setUserData(res.data.userData)
     })).catch(err => {
-      console.log(err);
+      if(err?.response?.data){
+        toast.error(err?.response?.data?.errMsg)
+      }
+      console.log(err)
     })
   }, [refresh])
 
   const acceptUser = (studentId) => {
-    axiosInstance.patch('/admin/acceptUser', { studentId }).then((res) => {
+    axiosInstance.patch('/admin/acceptUser', { studentId },{ headers: { authorization: `Bearer ${token}` } }).then((res) => {
       toast.success(res?.data?.message)
       setRefresh(!refresh)
     }).catch((err) => {
+      if(err?.response?.data){
+        toast.error(err?.response?.data?.errMsg)
+      }
       console.log(err);
     })
   }
