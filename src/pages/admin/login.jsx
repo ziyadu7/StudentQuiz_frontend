@@ -19,7 +19,6 @@ function Login() {
       setErr('Fill all the fields')
     }else{
       axiosInstance.post('/admin/login',{name,password}).then(res=>{
-        console.log(res.data);
         const name = res?.data?.admin?.name
         const role = 'admin'
         const token = res?.data?.token
@@ -53,7 +52,9 @@ function Login() {
                             className="block border border-grey-light w-full p-3 rounded mb-4"
                             name="password"
                             placeholder="Password" />
-
+                        <div className='felx justify-center'>
+                          <small className='text-red-600'>{err}</small>
+                        </div>
                         <button
                             type="button"
                             onClick={()=>confirmLogin()}

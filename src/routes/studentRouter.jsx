@@ -8,12 +8,12 @@ import { useSelector } from 'react-redux'
 function StudentRouter() {
 
   const {studentId} = useSelector((state)=>state?.Student)
-  console.log(studentId);
+
   return (
     <Routes>
         <Route path='/register' element = {<Register/>}/>
-        <Route path='/login' element = {<Login/>}/>
-        <Route path='/questions' element = {studentId ?<Questions/>:<Login/>}/>
+        <Route path='/login' element = {studentId ? <Questions/>:<Login/>}/>
+        <Route path='/questions' element = {studentId ? <Questions/>:<Login/>}/>
     </Routes>
   )
 }

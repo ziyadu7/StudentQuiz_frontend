@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import axiosInstance from '../../api/axios'
 import { useNavigate } from 'react-router-dom'
@@ -6,26 +5,28 @@ import { useDispatch } from 'react-redux'
 import { studentLogin } from '../../store/slice/student'
 
 function Login() {
-  const [userName,setUserName] = useState('')
-  const [password,setPassword] = useState('')
-  const [err,setErr] = useState('')
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  const [err, setErr] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const confirmLogin = ()=>{
-    if(userName.trim().length == 0||password.trim().length==0){
+  const confirmLogin = () => {
+    if (userName.trim().length == 0 || password.trim().length == 0) {
       setErr('Fill all the fields')
-    }else{
+    } else {
       setErr('')
-      axiosInstance.post('/student/login',{userName,password}).then((res)=>{
+      axiosInstance.post('/student/login', { userName, password }).then((res) => {
         console.log(res.data);
-          const name = res?.data?.student?.userName
-          const token = res?.data?.token
-          const role = res?.data?.role
-          const studentId = res?.data?.student?._id
-          dispatch(studentLogin({ name, token, role, studentId }))
-          navigate('/student/questions')
-      }).catch((err)=>{
+        const name = res?.data?.student?.userName
+        const mark = res?.data?.student?.mark
+        const isAttend = res?.data?.student?.isAttend
+        const token = res?.data?.token
+        const role = res?.data?.role
+        const studentId = res?.data?.student?._id
+        dispatch(studentLogin({ name, token, role, studentId,mark,isAttend }))
+        navigate('/student/questions')
+      }).catch((err) => {
         console.log(err);
         setErr(err?.response?.data?.errMsg)
       })
@@ -33,21 +34,37 @@ function Login() {
   }
   return (
     <div className="">
-    <div>
-      <div className="">
-        <label>Username </label>
-        <input type="text" onChange={(e)=>setUserName(e.target.value)} name="uname" required />
-      </div>
-      <div className="input-container">
-        <label>Password </label>
-        <input onChange={(e)=>setPassword(e.target.value)} type="password" name="pass" required />
-      </div>
-      <small>{err}</small>
-      <div className="button-container">
-      <button onClick={()=>confirmLogin()} type="button" >Submit</button>
+      <div className="bg-grey-lighter min-h-screen flex flex-col">
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+          <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+            <h1 className="mb-8 text-3xl text-center">Student Login</h1>
+
+            <input
+              type="text"
+              onChange={(e) => setUserName(e.target.value)}
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="Name"
+              placeholder="Name" />
+
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="password"
+              placeholder="Password" />
+            <div className='felx justify-center'>
+              <small className='text-red-600'>{err}</small>
+            </div>
+            <button
+              type="button"
+              onClick={() => confirmLogin()}
+              className="w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-green-dark focus:outline-none my-1"
+            >Login Account</button>
+
+          </div>
+        </div>
       </div>
     </div>
-  </div>
   )
 }
 
