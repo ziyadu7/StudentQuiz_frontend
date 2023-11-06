@@ -4,6 +4,7 @@ import Register from '../pages/student/Register'
 import Questions from '../pages/student/questions'
 import Login from '../pages/student/login'
 import { useSelector } from 'react-redux'
+import NotFound from '../pages/notFound'
 
 function StudentRouter() {
 
@@ -14,6 +15,7 @@ function StudentRouter() {
         <Route path='/register' element = {<Register/>}/>
         <Route path='/login' element = {studentId ? <Questions/>:<Login/>}/>
         <Route path='/questions' element = {studentId ? <Questions/>:<Login/>}/>
+        <Route path='/*' element = {<NotFound/>}/>
     </Routes>
   )
 }

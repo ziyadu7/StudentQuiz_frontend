@@ -13,6 +13,7 @@ function AdminRoute() {
     <Route path='/login' element = {token?<AddQuestions/>:<Login/>}/>
     <Route path='/addQuestions' element = {token?<AddQuestions/>:<Login/>}/>
     <Route path='/userData' element = {token?<UserData/>:<Login/>}/>
+    <Route path='/*' element = {<NotFound/>}/>
     </Routes>
   )
 }
