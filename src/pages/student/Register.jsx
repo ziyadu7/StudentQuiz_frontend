@@ -25,18 +25,34 @@ function Register() {
   }
   return (
     <div className="">
-    <div>
-      <div className="">
-        <label>Username </label>
-        <input type="text" onChange={(e)=>setUserName(e.target.value)} name="uname" required />
-      </div>
-      <div className="input-container">
-        <label>Password </label>
-        <input onChange={(e)=>setPassword(e.target.value)} type="password" name="pass" required />
-      </div>
-      <small>{err}</small>
-      <div className="button-container">
-        <button onClick={()=>confirmRegister()} type="button" >Submit</button>
+    <div className="bg-grey-lighter min-h-screen flex flex-col">
+      <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+          <h1 className="mb-8 text-3xl text-center">Student Register</h1>
+
+          <input
+            type="text"
+            onChange={(e) => setUserName(e.target.value)}
+            className="block border border-grey-light w-full p-3 rounded mb-4"
+            name="Name"
+            placeholder="Name" />
+
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="block border border-grey-light w-full p-3 rounded mb-4"
+            name="password"
+            placeholder="Password" />
+          <div className='felx justify-center'>
+            <small className='text-red-600'>{err}</small>
+          </div>
+          <button
+            type="button"
+            onClick={() => confirmLogin()}
+            className="w-full text-center py-3 rounded bg-blue-500 text-white hover:bg-green-dark focus:outline-none my-1"
+          >Login Account</button>
+
+        </div>
       </div>
     </div>
   </div>
