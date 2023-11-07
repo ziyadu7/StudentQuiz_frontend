@@ -40,37 +40,37 @@ function UserData() {
       </div>
 
 
-      <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <div className="flex justify-center overflow-x-auto">
+        <table className="md:w-[800px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 No
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 name
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Mark
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Action
               </th>
             </tr>
           </thead>
           <tbody>
             {userData.map(((user,i) => (
-              <tr key={user?._id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td scope="row" class="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <tr key={user?._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {i+1}
                 </td>
-                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {user?.userName}
                 </td>
-                <td class="px-6 py-4">
+                <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {user?.mark}
                 </td>
-                <td class="px-6 py-4">
+                <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   <button className='bg-green-600 text-black px-1 py-1 min-w-[70px] rounded-sm' onClick={() => {
                     user.isAccepted ? '' : acceptUser(user._id)
                   }}>{user?.isAccepted ? 'Accepted' : 'Accept'}</button></td>
