@@ -11,12 +11,14 @@ function StudentRouter() {
   const {studentId} = useSelector((state)=>state?.Student)
 
   return (
+       <div className='dark:bg-black dark:text-white'>
     <Routes>
         <Route path='/register' element = {<Register/>}/>
         <Route path='/login' element = {studentId ? <Questions/>:<Login/>}/>
         <Route path='/questions' element = {studentId ? <Questions/>:<Login/>}/>
         <Route path='/*' element = {<NotFound/>}/>
     </Routes>
+      </div>
   )
 }
 
