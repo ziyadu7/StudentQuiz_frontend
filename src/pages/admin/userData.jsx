@@ -16,7 +16,6 @@ function UserData() {
       if(err?.response?.data){
         toast.error(err?.response?.data?.errMsg)
       }
-      console.log(err)
     })
   }, [refresh])
 
@@ -28,7 +27,6 @@ function UserData() {
       if(err?.response?.data){
         toast.error(err?.response?.data?.errMsg)
       }
-      console.log(err);
     })
   }
   return (
@@ -54,6 +52,9 @@ function UserData() {
                 Mark
               </th>
               <th scope="col" className="px-6 py-3">
+                Number Of Try
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Action
               </th>
             </tr>
@@ -69,6 +70,9 @@ function UserData() {
                 </td>
                 <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {user?.mark}
+                </td>
+                <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {user?.noOfTry}
                 </td>
                 <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   <button className='bg-green-600 text-black px-1 py-1 min-w-[70px] rounded-sm' onClick={() => {

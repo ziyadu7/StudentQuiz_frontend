@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import NavBarStudent from './navBarStudent'
 import toast from 'react-hot-toast'
 import { questionSubmition } from '../../store/slice/student'
+import { useNavigate } from 'react-router-dom'
+import TryAgainModal from '../../components/tryAgainModal'
 
 function Questions() {
 
@@ -12,7 +14,9 @@ function Questions() {
   const [attended, setAttended] = useState([])
   const { studentId } = useSelector((state) => state?.Student)
   const [refresh, setRefresh] = useState(false)
+  const [isModal,setIsModal] = useState(false)
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const student = useSelector(store => store.Student)
 
@@ -36,6 +40,9 @@ function Questions() {
         toast.success(res?.data?.message)
         dispatch(questionSubmition({isAttend:true,mark}))
       }).catch(err => {
+        if(err?.response?.data?.errMsg){
+          toast.error(err?.response?.data?.errMsg)
+        }
         console.log(err);
       })
     }
@@ -46,16 +53,31 @@ function Questions() {
       axiosInstance.get('/student/getQuestions', { headers: { authorization: `Bearer ${student?.token}` } }).then(res => {
         setQuestions(res.data.questions)
       }).catch(err => {
-        console.log(err);
+        if(err?.response?.data?.errMsg){
+          toast.error(err?.response?.data?.errMsg)
+        }
       })
     }
   }, [refresh])
+
+  const tryAgain = ()=>{
+    axiosInstance.patch('/student/tryAgain',{},{headers: { authorization: `Bearer ${student?.token}` }}).then((res)=>{
+      toast.success(res?.data?.message)
+      dispatch(questionSubmition({isAttend:false,mark:0}))
+      setRefresh(!refresh)
+    }).catch((err)=>{
+      if(err?.response?.data?.errMsg){
+        toast.error(err?.response?.data?.errMsg)
+      }
+    })
+  }
   return (
     <div>
       <div>
         <NavBarStudent />
       </div>
       {student?.isAttend ? <div class="min-h-screen">
+        {isModal&&<TryAgainModal setIsModal={setIsModal} tryAgain={tryAgain}/>}
         <div class="p-6  md:mx-auto">
           <svg viewBox="0 0 24 24" class="text-green-600 w-16 h-16 mx-auto my-6">
             <path fill="currentColor"
@@ -66,6 +88,11 @@ function Questions() {
             <h3 class="md:text-2xl text-base font-semibold text-center">Successfully Completed!</h3>
             <p class="my-2">Thank you for participating this quiz event.</p>
             <p> Your Score is : {student.mark} </p>
+            <div class="py-10 text-center">
+            <button onClick={() => setIsModal(true)} class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+              Try Again
+            </button>
+          </div>
           </div>
         </div>
       </div> : <div className='flex w-full p-4 justify-center'>

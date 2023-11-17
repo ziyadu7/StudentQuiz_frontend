@@ -13,6 +13,7 @@ function ThemeSwicher() {
         document.documentElement.classList.remove('dark')
        }
     },[theme])
+    
     const handleThemechange=()=>{
         theme==='dark'?dispatch(themeChange({theme:"light"})):dispatch(themeChange({theme:"dark"}))  
     }
