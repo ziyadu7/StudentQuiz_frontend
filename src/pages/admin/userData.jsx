@@ -38,8 +38,8 @@ function UserData() {
       </div>
 
 
-      <div className="flex justify-center overflow-x-auto">
-        <table className="md:w-[800px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <div className="flex justify-center overflow-x-auto ">
+        <table className=" w-4/5 text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
@@ -65,7 +65,7 @@ function UserData() {
                 <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {i+1}
                 </td>
-                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {user?.userName}
                 </td>
                 <td scope="row" className="px-6 py-4 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
